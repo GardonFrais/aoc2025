@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest"
-import { mapPasswordEntry, parsePasswordEntries, resolve, type PasswordEntry } from "./first"
+import { resolve } from "./first"
 
 describe("01 2025 first step", () => {
     test("Should resolve first step of 01 2025", () => {
