@@ -1,18 +1,15 @@
 import { readFileSync } from 'fs';
 import { splitIntoLines } from '../../lib/splitIntoLines';
+import { mapPasswordEntry, type PasswordEntry } from './passwordEntry';
 
-export type Direction = 'L' | 'R'
-export type PasswordEntry = {
-    direction: Direction
-    numberOfClicks: number
-}
+
 
 export const resolve = (filename: string): number => {
     let dialPointer: number = 50;
     let result: number = 0;
 
     const input: string = readFileSync(filename).toString();
-    const passwordEntries: PasswordEntry[] = parsePasswordEntries(input);
+    const passwordEntries: PasswordEntry[] = splitIntoLines(input).map(mapPasswordEntry)
 
     passwordEntries.forEach(passwordEntry => {
         dialPointer = passwordEntry.direction === 'R' ? dialPointer + passwordEntry.numberOfClicks : dialPointer - passwordEntry.numberOfClicks;
@@ -23,15 +20,4 @@ export const resolve = (filename: string): number => {
         if (dialPointer === 0) result++;
     })
     return result
-}
-
-export const parsePasswordEntries = (input: string): PasswordEntry[] => {
-    return splitIntoLines(input).map(mapPasswordEntry)
-}
-
-export const mapPasswordEntry = (input: string): PasswordEntry => {
-    return {
-        direction: input.charAt(0) as Direction,
-        numberOfClicks: Number(input.substring(1))
-    }
 }
