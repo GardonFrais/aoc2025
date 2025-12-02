@@ -1,5 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { getInvalidIds, mapStringToIdRange, type IdRange } from "./idRange";
+import {
+  getInvalidIds,
+  getInvalidIdsv2,
+  mapStringToIdRange,
+  type IdRange,
+} from "./idRange";
 
 describe("string to id range parser", () => {
   test("Should parse string to id range", () => {
@@ -27,5 +32,24 @@ describe("get invalid ids", () => {
     };
     const expected = [446446];
     expect(getInvalidIds(idRange)).toStrictEqual(expected);
+  });
+});
+
+describe("get invalid ids v2", () => {
+  test("Should get 95 and 115 for v2 invalid ids", () => {
+    const idRange: IdRange = {
+      lowerRange: 95,
+      upperRange: 115,
+    };
+    const expected = [99, 111];
+    expect(getInvalidIdsv2(idRange)).toStrictEqual(expected);
+  });
+  test("Should get 446446 for v2 invalid id", () => {
+    const idRange: IdRange = {
+      lowerRange: 565653,
+      upperRange: 565659,
+    };
+    const expected = [565656];
+    expect(getInvalidIdsv2(idRange)).toStrictEqual(expected);
   });
 });

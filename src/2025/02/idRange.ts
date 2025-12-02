@@ -25,3 +25,11 @@ export const getInvalidIds = (idRange: IdRange): number[] => {
   }
   return invalidIds;
 };
+
+export const getInvalidIdsv2 = (idRange: IdRange): number[] => {
+  const invalidIds: number[] = [];
+  for (let i = idRange.lowerRange; i <= idRange.upperRange; i++) {
+    if (i.toString().match(/^([0-9]+)(\1)(\1)*$/)) invalidIds.push(i);
+  }
+  return invalidIds;
+};

@@ -1,3 +1,3 @@
-import { resolve } from "./2025/02/first";
+import { resolve } from "./2025/02/second";
 
 console.log(resolve("src/2025/02/input.txt"));
