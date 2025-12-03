@@ -8,19 +8,26 @@ export const mapStringToBank = (s: string): Bank => {
   };
 };
 
-export const getMaxBankJoltage = (bank: Bank): number => {
+export const getMaxBankJoltage = (
+  bank: Bank,
+  maxJoltageDigits: number,
+): number => {
   return bank.batteriesJoltage.reduce(
     (maxJoltage, currBatteryJoltage, index) => {
-      const maxJoltageTenth = Math.floor(maxJoltage / 10);
-      const maxJoltageDigit = maxJoltage % 10;
-      if (
-        index < bank.batteriesJoltage.length - 1 &&
-        currBatteryJoltage * 10 > maxJoltage
-      )
-        return currBatteryJoltage * 10;
-      else if (currBatteryJoltage > maxJoltageDigit)
-        return maxJoltageTenth * 10 + currBatteryJoltage;
-      else return maxJoltage;
+      for (let i = 1; i <= maxJoltageDigits; i++) {
+        if (
+          index < bank.batteriesJoltage.length - (maxJoltageDigits - i) &&
+          currBatteryJoltage * Math.pow(10, maxJoltageDigits - i) >
+            maxJoltage % Math.pow(10, maxJoltageDigits - (i - 1))
+        ) {
+          return (
+            Math.floor(maxJoltage / Math.pow(10, maxJoltageDigits - (i - 1))) *
+              Math.pow(10, maxJoltageDigits - (i - 1)) +
+            currBatteryJoltage * Math.pow(10, maxJoltageDigits - i)
+          );
+        }
+      }
+      return maxJoltage;
     },
     0,
   );
