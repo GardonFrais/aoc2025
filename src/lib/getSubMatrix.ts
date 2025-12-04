@@ -5,6 +5,6 @@ export const getSubMatrix = <T>(
   length: number,
 ): T[][] => {
   return matrix
-    .slice(startRow, startRow + length)
-    .map((row) => row.slice(startCol, startCol + length));
+    .slice(startRow < 0 ? 0 : startRow, startRow + length)
+    .map((row) => row.slice(startCol < 0 ? 0 : startCol, startCol + length));
 };
