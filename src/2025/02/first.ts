@@ -10,3 +10,5 @@ export const resolve = (filename: string): number => {
     )
     .reduce((sum, invalidIds) => sum + invalidIds, 0);
 };
+
+console.log(resolve("src/2025/02/input.txt"));

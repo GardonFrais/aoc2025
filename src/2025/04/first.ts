@@ -18,3 +18,5 @@ export const resolve = (filename: string): number => {
   }
   return accessibleRollsNumber;
 };
+
+console.log(resolve("src/2025/04/input.txt"));
