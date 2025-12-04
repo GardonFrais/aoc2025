@@ -1,3 +1,3 @@
-import { resolve } from "./2025/03/second";
+import { resolve } from "./2025/04/first";
 
-console.log(resolve("src/2025/03/input.txt"));
+console.log(resolve("src/2025/04/input.txt"));
