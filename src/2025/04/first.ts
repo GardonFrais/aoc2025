@@ -1,9 +1,6 @@
 import { readFileSync } from "fs";
 import { splitIntoLines } from "../../lib/splitIntoLines";
-import { getSubMatrix } from "../../lib/getSubMatrix";
-
-const ROLL: string = "@";
-const ACCESSIBLE_COUNT: number = 4;
+import { isRollAccessible } from "./roll";
 
 export const resolve = (filename: string): number => {
   const input: string = readFileSync(filename).toString();
@@ -20,19 +17,4 @@ export const resolve = (filename: string): number => {
     }
   }
   return accessibleRollsNumber;
-};
-
-export const isRollAccessible = (
-  rollsGrid: string[][],
-  row: number,
-  column: number,
-): boolean => {
-  if (!rollsGrid[row] || rollsGrid[row][column] !== ROLL) return false;
-  return (
-    getSubMatrix(rollsGrid, row - 1, column - 1, 3)
-      .flat()
-      .filter((slot) => slot === ROLL).length -
-      1 <
-    ACCESSIBLE_COUNT
-  );
 };
