@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import type { IdRange } from "../02/idRange";
 import {
+  areFreshRangesOverlapping,
   isIngredientInRange,
   mapStringToFreshRange,
   type FreshRange,
@@ -37,5 +38,55 @@ describe("is ingredient in fresh range", () => {
       upperRange: 10,
     };
     expect(isIngredientInRange(1, range)).toStrictEqual(false);
+  });
+});
+
+describe("are ranges overlapping", () => {
+  test("ranges are overlapping 1", () => {
+    const rangeA: FreshRange = {
+      lowerRange: 3,
+      upperRange: 10,
+    };
+    const rangeB: FreshRange = {
+      lowerRange: 5,
+      upperRange: 12,
+    };
+    expect(areFreshRangesOverlapping(rangeA, rangeB)).toStrictEqual(true);
+  });
+
+  test("ranges are overlapping 2", () => {
+    const rangeA: FreshRange = {
+      lowerRange: 3,
+      upperRange: 10,
+    };
+    const rangeB: FreshRange = {
+      lowerRange: 2,
+      upperRange: 9,
+    };
+    expect(areFreshRangesOverlapping(rangeA, rangeB)).toStrictEqual(true);
+  });
+
+  test("ranges are overlapping 3", () => {
+    const rangeA: FreshRange = {
+      lowerRange: 3,
+      upperRange: 10,
+    };
+    const rangeB: FreshRange = {
+      lowerRange: 2,
+      upperRange: 19,
+    };
+    expect(areFreshRangesOverlapping(rangeA, rangeB)).toStrictEqual(true);
+  });
+
+  test("ranges arent overlapping", () => {
+    const rangeA: FreshRange = {
+      lowerRange: 3,
+      upperRange: 10,
+    };
+    const rangeB: FreshRange = {
+      lowerRange: 12,
+      upperRange: 19,
+    };
+    expect(areFreshRangesOverlapping(rangeA, rangeB)).toStrictEqual(false);
   });
 });
