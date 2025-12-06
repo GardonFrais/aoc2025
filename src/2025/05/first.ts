@@ -30,4 +30,4 @@ export const resolve = (filename: string): number => {
   return freshIngredients.length;
 };
 
-console.log(resolve("src/2025/05/input.txt"));
+// console.log(resolve("src/2025/05/input.txt"));

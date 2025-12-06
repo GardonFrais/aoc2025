@@ -8,4 +8,4 @@ export const resolve = (filename: string): number => {
   return banks.reduce((acc, bank) => acc + getMaxBankJoltage(bank, 12), 0);
 };
 
-console.log(resolve("src/2025/03/input.txt"));
+// console.log(resolve("src/2025/03/input.txt"));

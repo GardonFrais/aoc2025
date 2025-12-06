@@ -25,4 +25,4 @@ export const resolve = (filename: string): number => {
   return result;
 };
 
-console.log(resolve("src/2025/01/input.txt"));
+// console.log(resolve("src/2025/01/input.txt"));

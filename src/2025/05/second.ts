@@ -47,4 +47,4 @@ export const resolve = (filename: string): number => {
     0,
   );
 };
-console.log(resolve("src/2025/05/input.txt"));
+// console.log(resolve("src/2025/05/input.txt"));
