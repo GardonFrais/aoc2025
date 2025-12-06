@@ -17,4 +17,4 @@ export const resolve = (filename: string): number => {
   return problems.reduce((sum, problem) => sum + resolveProblem(problem), 0);
 };
 
-console.log(resolve("src/2025/06/input.txt"));
+// console.log(resolve("src/2025/06/input.txt"));
